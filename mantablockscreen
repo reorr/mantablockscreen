@@ -1,0 +1,130 @@
+#!/bin/env bash
+
+wallpaper=$2
+cropuser=/tmp/$USER-pic-crop.png
+cachepath=$HOME/.cache/mantablockscreen
+fullname=`getent passwd $USER | cut -d ":" -f 5`
+full_alias="${fullname} (${USER})"
+eval $(xdotool getdisplaygeometry --shell)
+half_width=$((WIDTH/2))
+half_height=$((HEIGHT/2))
+cropuser() {
+	ava_home=$HOME/.face
+	ava_var=/var/lib/AccountsService/icons/$USER
+	userpic=/usr/share/mantabassets/userpic.png
+	if [[ -e $ava_home ]]; then
+		userpic=$ava_home
+	elif [[ -e $ava_var ]]; then
+		userpic=$ava_var
+	fi
+
+	convert $userpic -resize 100x100 -gravity Center \( \
+		-size 100x100 xc:Black \
+		-fill White \
+		-draw "circle 50 50 50 1" \
+		-alpha Copy\
+		\) -compose CopyOpacity -composite -trim $cropuser
+}
+
+blurbg() {
+	convert "$cachepath/resize.png" \
+		-filter Gaussian \
+		-blur 0x8 \
+		"$cachepath/resize-blur.png"
+}
+
+cropbg() {
+	convert "$wallpaper" -resize ${WIDTH}x -gravity center -crop ${WIDTH}x${HEIGHT}+0+0 +repage \( \
+        -size 120x140 xc:none \
+        \) -gravity south -compose over -composite $cachepath/resize.png
+}
+
+genbg() {
+	if [[ ! -d $HOME/.cache/mantablockscreen ]]; then
+		mkdir $HOME/.cache/mantablockscreen
+	fi
+	cropuser
+	cropbg
+	blurbg
+	composite -geometry "+$((half_width-50))+$((half_height-130))" $cropuser $cachepath/resize-blur.png $cachepath/resize-pic-blur.png
+	composite -geometry "+$((half_width-50))+$((half_height+10))" $cropuser $cachepath/resize-blur.png $cachepath/resize-pic-anu-blur.png
+}
+
+lock() {
+	i3lock -n --force-clock -i $cachepath/resize-pic-blur.png \
+    --indpos="$half_width:$((half_height+60))" --timepos="$((WIDTH-100)):$((HEIGHT-70))" --datepos="$((WIDTH-115)):$((HEIGHT-40))" --greeterpos="$half_width:$half_height" \
+    --insidevercolor=fefefeff --insidewrongcolor=f82a11aa --insidecolor=fefefe00 \
+    --ringvercolor=fefefe66 --ringwrongcolor=f82a11aa --ringcolor=fefefeff \
+    --keyhlcolor=39393999 --bshlcolor=39393999 --separatorcolor=00000000 \
+    --datecolor=fefefeff --timecolor=fefefeff --greetercolor=fefefeff \
+    --timestr="%I:%M" --timesize=50 \
+    --datestr="%a, %b %d" --datesize=30 \
+    --greetertext="$full_alias" --greetersize=25\
+    --line-uses-ring \
+    --radius 38 --ring-width 3 --indicator \
+    --veriftext=""  --wrongtext="" --noinputtext="" \
+    --clock --date-font="SF Pro Display" --time-font="SF Pro Display"
+}
+
+locktop() {
+	date_now=$(date +'%b, %d')
+	i3lock -n --force-clock -i $cachepath/resize-pic-anu-blur.png \
+	--indpos="$half_width:$((half_height+60))" --timepos="$half_width:$((half_height-100))" --datepos="$half_width:$((half_height-30))" --greeterpos="$half_width:$half_height" \
+	--insidevercolor=fefefe66 --insidewrongcolor=f82a11aa --insidecolor=fefefe00 \
+	--ringvercolor=fefefe66 --ringwrongcolor=f82a11aa --ringcolor=fefefeff \
+	--keyhlcolor=39393999 --bshlcolor=39393999 --separatorcolor=00000000 \
+	--datecolor=fefefeff --timecolor=fefefeff --greetercolor=fefefeff \
+	--timestr="%I" --timesize=70 \
+	--datestr="%M" --datesize=70 \
+	--greetertext="$date_now" --greetersize=25\
+	--line-uses-inside --radius 50 --ring-width 2 --indicator \
+	--veriftext=""  --wrongtext="" --noinputtext="" \
+	--clock --date-font="Abel" --time-font="Abel"
+}
+
+lockkek() {
+	i3lock -n --force-clock -i $cachepath/resize-blur.png \
+	--indpos="$half_width:$half_height" --timepos="$half_width:$((half_height-5))" --datepos="$half_width:$((half_height+35))" --greeterpos="$half_width:$half_height" \
+	--insidevercolor=5f5f5f66 --insidewrongcolor=f82a11aa --insidecolor=5f5f5f66 \
+	--ringvercolor=fefefe66 --ringwrongcolor=f82a11aa --ringcolor=fefefeff \
+	--keyhlcolor=39393999 --bshlcolor=39393999 --separatorcolor=00000000 \
+	--datecolor=fefefeff --timecolor=fefefeff --greetercolor=fefefeff \
+	--timestr="%I | %M" --timesize=40 \
+	--datestr="%a, %d %b" --datesize=25 \
+	--greetertext="$date_now" --greetersize=25 \
+	--line-uses-inside --radius 75 --ring-width 2 --indicator \
+	--veriftext=""  --wrongtext="" --noinputtext="" \
+	--clock --date-font="Abel" --time-font="Abel"
+}
+
+
+slowfade () {
+    dis=$(echo -n "$DISPLAY" | tr -c '[:alnum:]' _)
+    ifc='com.github.chjj.compton'
+    obj='/com/github/chjj/compton'
+    if [[ "$1" == "start" ]]; then
+        dbus-send --print-reply --dest=$ifc.$dis \
+            $obj $ifc.opts_set string:fade_in_step double:0.02
+        dbus-send --print-reply --dest=$ifc.$dis \
+            $obj $ifc.opts_set string:fade_out_step double:0.02
+    else
+        dbus-send --print-reply --dest=$ifc.$dis \
+            $obj $ifc.opts_set string:fade_in_step double:0.1
+        dbus-send --print-reply --dest=$ifc.$dis \
+            $obj $ifc.opts_set string:fade_out_step double:0.1
+    fi
+}
+
+if [[ "$1" == "-i" ]]; then
+	genbg $1
+fi
+slowfade start
+if [[ "$1" == "top" ]]; then
+	locktop
+elif [[ "$1" == "kek" ]]; then
+	lockkek
+else
+	lock
+fi
+sleep 1
+slowfade end
