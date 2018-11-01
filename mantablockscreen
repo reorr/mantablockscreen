@@ -57,7 +57,7 @@ lock() {
     --ringvercolor=fefefe66 --ringwrongcolor=f82a11aa --ringcolor=fefefeff \
     --keyhlcolor=39393999 --bshlcolor=39393999 --separatorcolor=00000000 \
     --datecolor=fefefeff --timecolor=fefefeff --greetercolor=fefefeff \
-    --timestr="%I:%M" --timesize=50 \
+    --timestr="%H:%M" --timesize=50 \
     --datestr="%a, %b %d" --datesize=30 \
     --greetertext="$full_alias" --greetersize=25\
     --line-uses-ring \
@@ -74,7 +74,7 @@ stackclock() {
 	--ringvercolor=fefefe66 --ringwrongcolor=f82a11aa --ringcolor=fefefeff \
 	--keyhlcolor=39393999 --bshlcolor=39393999 --separatorcolor=00000000 \
 	--datecolor=fefefeff --timecolor=fefefeff --greetercolor=fefefeff \
-	--timestr="%I" --timesize=70 \
+	--timestr="%H" --timesize=70 \
 	--datestr="%M" --datesize=70 \
 	--greetertext="$date_now" --greetersize=25\
 	--line-uses-inside --radius 50 --ring-width 2 --indicator \
@@ -89,7 +89,7 @@ circleclock() {
 	--ringvercolor=fefefe66 --ringwrongcolor=f82a11aa --ringcolor=fefefeff \
 	--keyhlcolor=39393999 --bshlcolor=39393999 --separatorcolor=00000000 \
 	--datecolor=fefefeff --timecolor=fefefeff --greetercolor=fefefeff \
-	--timestr="%I | %M" --timesize=40 \
+	--timestr="%H | %M" --timesize=40 \
 	--datestr="%a, %d %b" --datesize=25 \
 	--greetertext="$date_now" --greetersize=25 \
 	--line-uses-inside --radius 75 --ring-width 2 --indicator \
