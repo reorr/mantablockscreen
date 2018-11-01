@@ -28,21 +28,23 @@ To create cached images run command below <br>
 After that you can run `mantablockscreen` with or without argument below <br>
 ```
 $ mantablockscreen
-$ mantablockscreen top
-$ mantablockscreen kek
+$ mantablockscreen stackclock
+$ mantablockscreen circleclock
 ```
 To enable slowfade effect you must use compton with fade enabled and run it with --dbus argument `compton --dbus`
 
 ### in action
-![mantablockscreen in action](inaction.gif)
+<div align="center">
+	<img src="inaction.gif">
+</div>
 
 ## Preview
 ### default
 ![mantablockscreen default](Screenshot/default.png)
-### top
-![mantablockscreen top](Screenshot/top.png)
-### kek
-![mantablockscreen kek](Screenshot/kek.png)
+### stackclock
+![mantablockscreen stackclock](Screenshot/stackclock.png)
+### circleclock
+![mantablockscreen circleclock](Screenshot/circleclock.png)
 
 ## Credit
 - inspired by [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen)
