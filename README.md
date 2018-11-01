@@ -33,6 +33,9 @@ $ mantablockscreen kek
 ```
 To enable slowfade effect you must use compton with fade enabled and run it with --dbus argument `compton --dbus`
 
+### in action
+![mantablockscreen in action](inaction.gif)
+
 ## Preview
 ### default
 ![mantablockscreen default](Screenshot/default.png)
