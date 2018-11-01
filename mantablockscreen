@@ -119,9 +119,9 @@ if [[ "$1" == "-i" ]]; then
 	genbg $1
 fi
 slowfade start
-if [[ "$1" == "stackclock" ]]; then
+if [[ "$1" == "sc" ]]; then
 	stackclock
-elif [[ "$1" == "circleclock" ]]; then
+elif [[ "$1" == "cc" ]]; then
 	circleclock
 else
 	lock
