@@ -133,9 +133,25 @@ circleclock() {
 	slowfade end
 }
 
+show_help(){
+	cat <<-EOF                                 
+	Usage :
+	 mantablockscreen [OPTION]
+
+	Avaible options:
+	 -i, --image             Generate cache image
+	 -sc, --stackclock       Show lockscreen with stacked digital clock
+	 -cc, --circleclock      Show lockscreen with clock inside circle
+	 -h, --help              Show this help
+
+	EOF
+}
+
 case $1 in 
-	-i) 
+	-i|--image) 
 		genbg $2 ;;
+	-h|--help)
+		show_help ;;
 	-sc|--stackclock)
 		stackclock ;;
 	-cc|--circleclock)
