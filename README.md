@@ -5,7 +5,6 @@
 
 ## Dependencies
 - `bash`
-- `xdotool`
 - `imagemagick`
 - `i3lock-color`
 - [SF Pro Display Font](https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts)
@@ -49,3 +48,4 @@ To enable slowfade effect you must use compton with fade enabled and run it with
 ## Credit
 - inspired by [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen)
 - slowfade script by [Nanda Okitavera](https://github.com/yuune)
+- thanks to [Ghani Rafif](https://github.com/ekickx/) for fixing uncentered ring
