@@ -27,8 +27,8 @@ To create cached images run command below <br>
 After that you can run `mantablockscreen` with or without argument below <br>
 ```
 $ mantablockscreen
-$ mantablockscreen sc
-$ mantablockscreen cc
+$ mantablockscreen -sc
+$ mantablockscreen -cc
 ```
 To enable slowfade effect you must use compton with fade enabled and run it with --dbus argument `compton --dbus`
 
