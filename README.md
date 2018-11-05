@@ -1,6 +1,7 @@
 <div align="center">
 	<h1>mantablockscreen</h1>
 	<p>Another i3lock-color wrapper that mantab</p>
+	<img src="inaction.gif">
 </div>
 
 ## Dependencies
@@ -31,11 +32,6 @@ $ mantablockscreen -sc
 $ mantablockscreen -cc
 ```
 To enable slowfade effect you must use compton with fade enabled and run it with --dbus argument `compton --dbus`
-
-### in action
-<div align="center">
-	<img src="inaction.gif">
-</div>
 
 ## Preview
 ### default
