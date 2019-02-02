@@ -3,7 +3,7 @@
 wallpaper=$2
 cachepath=$HOME/.cache/mantablockscreen
 cropuser=$cachepath/$USER-pic-crop.png
-fullname=`getent passwd $USER | cut -d ":" -f 5`
+fullname=`getent passwd $USER | cut -d ":" -f 5 | cut -d "," -f 1`
 full_alias="${fullname} (${USER})"
 if [[ -n $fullname ]]; then
 	full_alias="${fullname} (${USER})"
