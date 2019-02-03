@@ -138,6 +138,37 @@ circleclock() {
 	slowfade end
 }
 
+currentlock() {
+	slowfade start
+	
+	#take screenshot
+	import -window root /tmp/screenshot.png
+
+	# blur it
+	convert /tmp/screenshot.png -filter Gaussian -blur 0x8 /tmp/screenshotblur.png
+	rm /tmp/screenshot.png
+
+	#add your avatar
+	composite -geometry "+$((half_width-50))+$((half_height-50))" \
+	$cropuser /tmp/screenshotblur.png /tmp/screenshot.png
+
+	# lock the screen
+	i3lock -n --force-clock -i /tmp/screenshot.png \
+	--indpos="w/2:h/2" --timepos="w-100:h-70" --datepos="w-115:h-40" --greeterpos="w/2:h/2" \
+	--insidevercolor=$verif_color --insidewrongcolor=$wrong_color --insidecolor=fefefe00 \
+	--ringvercolor=$verif_color --ringwrongcolor=$wrong_color --ringcolor=$fg_color \
+	--keyhlcolor=$highlight_color --bshlcolor=$highlight_color --separatorcolor=00000000 \
+	--datecolor=$fg_color --timecolor=$fg_color --greetercolor=$fg_color \
+	--timestr="%H:%M" --timesize=50 \
+	--datestr="%a, %b %d" --datesize=30 \
+	--line-uses-inside --radius 50 --ring-width 3 --indicator \
+	--veriftext=""  --wrongtext="" --noinputtext="" \
+	--clock --date-font="SF Pro Display" --time-font="SF Pro Display"
+
+	sleep 1
+	slowfade end
+}
+
 show_help(){
 	cat <<-EOF                                 
 	Usage :
@@ -147,6 +178,7 @@ show_help(){
 	 -i, --image             Generate cache image
 	 -sc, --stackclock       Show lockscreen with stacked digital clock
 	 -cc, --circleclock      Show lockscreen with clock inside circle
+	 -cl, --currentlock      Show lockscreen with current background
 	 -h, --help              Show this help
 
 	EOF
@@ -161,6 +193,8 @@ case $1 in
 		stackclock ;;
 	-cc|--circleclock)
 		circleclock ;;
+	-cl|--currentlock)
+		currentlock ;;
 	*)
 		lock ;;
 esac
