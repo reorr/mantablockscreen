@@ -40,8 +40,6 @@ To enable slowfade effect you must use compton with fade enabled and run it with
 ![mantablockscreen stackclock](Screenshot/stackclock.png)
 ### circleclock
 ![mantablockscreen circleclock](Screenshot/circleclock.png)
-### circleclock
-![mantablockscreen currentclock](Screenshot/currentlock.png)
 
 ## Credit
 - inspired by [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen)
