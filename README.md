@@ -30,6 +30,7 @@ After that you can run `mantablockscreen` with or without argument below <br>
 $ mantablockscreen
 $ mantablockscreen -sc
 $ mantablockscreen -cc
+$ mantablockscreen -cl
 ```
 To enable slowfade effect you must use compton with fade enabled and run it with --dbus argument `compton --dbus`
 
@@ -40,6 +41,8 @@ To enable slowfade effect you must use compton with fade enabled and run it with
 ![mantablockscreen stackclock](Screenshot/stackclock.png)
 ### circleclock
 ![mantablockscreen circleclock](Screenshot/circleclock.png)
+### currentlock
+![mantablockscreen currentlock](Screenshot/currentlock.png)
 
 ## Credit
 - inspired by [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen)
