@@ -22,6 +22,8 @@ $ cd mantablockscreen
 ```
 3. Run `$ sudo make install`
 
+You can also install it via [AUR](https://aur.archlinux.org/packages/mantablockscreen/) if you are running Arch Linux
+
 ## Usage
 To create cached images run command below <br>
 `$ mantablockscreen -i PATH/TO/YOUR/IMAGE` <br>
