@@ -22,6 +22,12 @@ $ cd mantablockscreen
 ```
 3. Run `$ sudo make install`
 
+### archlinux
+You can install mantablockscreen from aur with
+```
+$ yay -S mantablockscreen
+```
+
 ## Usage
 To create cached images run command below <br>
 `$ mantablockscreen -i PATH/TO/YOUR/IMAGE` <br>
