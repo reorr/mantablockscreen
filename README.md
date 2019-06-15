@@ -51,3 +51,6 @@ To enable slowfade effect you must use compton with fade enabled and run it with
 - inspired by [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen)
 - slowfade script by [Nanda Okitavera](https://github.com/yuune)
 - thanks to [Ghani Rafif](https://github.com/ekickx/) for fixing uncentered ring
+
+## Buy me a ko-fi
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V0XBC5)
