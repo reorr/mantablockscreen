@@ -24,7 +24,7 @@ verif_color=fefefe66
 cropuser() {
 	ava_home=$HOME/.face
 	ava_var=/var/lib/AccountsService/icons/$USER
-	userpic=/usr/share/mantabassets/userpic.png
+	userpic=/usr/local/share/mantabassets/userpic.png
 	if [[ -e $ava_home ]]; then
 		userpic=$ava_home
 	elif [[ -e $ava_var ]]; then
@@ -139,7 +139,7 @@ circleclock() {
 }
 
 show_help(){
-	cat <<-EOF                                 
+	cat <<-EOF
 	Usage :
 	 mantablockscreen [OPTION]
 
@@ -152,8 +152,8 @@ show_help(){
 	EOF
 }
 
-case $1 in 
-	-i|--image) 
+case $1 in
+	-i|--image)
 		genbg $2 ;;
 	-h|--help)
 		show_help ;;
