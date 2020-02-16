@@ -1,15 +1,14 @@
 ifeq ($(PREFIX),)
-	PREFIX := /usr
+	PREFIX := /usr/local
 endif
 
 .PHONY: install
 install:
-	install -d $(DESTDIR)$(PREFIX)/local/bin
-	install -d $(DESTDIR)$(PREFIX)/share/mantabassets
-	install -m 755 mantablockscreen $(DESTDIR)$(PREFIX)/local/bin/mantablockscreen
-	install -m 755 mantabassets/* $(DESTDIR)$(PREFIX)/share/mantabassets/
+	sed 's|@pkgdatadir[@]|$(PREFIX)/share/mantabassets|g' mantablockscreen.in > mantablockscreen
+	install -D mantablockscreen '$(DESTDIR)$(PREFIX)/bin/mantablockscreen'
+	install -D mantabassets/* -t '$(DESTDIR)$(PREFIX)/share/mantabassets/'
 
 .PHONY: uninstall
 uninstall:
-	test -e $(DESTDIR)$(PREFIX)/local/bin/mantablockscreen && rm $(DESTDIR)$(PREFIX)/local/bin/mantablockscreen
-	test -d $(DESTDIR)$(PREFIX)/share/mantabassets && rm -rf $(DESTDIR)$(PREFIX)/share/mantabassets || exit 0
+	rm -f '$(DESTDIR)$(PREFIX)/bin/mantablockscreen'
+	rm -rf '$(DESTDIR)$(PREFIX)/share/mantabassets'
