@@ -24,7 +24,7 @@ verif_color=fefefe66
 cropuser() {
 	ava_home=$HOME/.face
 	ava_var=/var/lib/AccountsService/icons/$USER
-	userpic=/usr/local/share/mantabassets/userpic.png
+	userpic=@pkgdatadir@/userpic.png
 	if [[ -e $ava_home ]]; then
 		userpic=$ava_home
 	elif [[ -e $ava_var ]]; then
